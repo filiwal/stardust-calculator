@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonshot Stardust Calculator</title>
+    <style>
+        :root {
+            --bg-top: #070b1f;
+            --bg-bottom: #0a163a;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: arial, sans-serif;
+        }
+
+        /* Background */
+        body {
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            position: relative;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Stars */
+        .stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(white 1px, transparent 1px),
+                radial-gradient(white 1px, transparent 1px);
+            background-size: 100px 100px, 150px 150px;
+            background-position: 0 0, 50px 50px;
+            animation: moveStars 60s linear infinite, twinkle 6s ease-in-out infinite alternate;
+            opacity: 0.6;
+        }
+
+        @keyframes moveStars {
+            0% { background-position: 0 0, 50px 50px; }
+            100% { background-position: -500px -500px, -450px -450px; }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Floating blobs */
+        .blobs {
+            position: absolute;
+            width: 70vmax;
+            height: 70vmax;
+            background: radial-gradient(circle, rgba(100,180,255,0.1), transparent 60%);
+            filter: blur(80px);
+            animation: float1 25s ease-in-out infinite;
+            top: -20vmax;
+            left: -20vmax;
+        }
+
+        .blobs.n2 {
+            background: radial-gradient(circle, rgba(255,120,200,0.08), transparent 60%);
+            bottom: -25vmax;
+            right: -25vmax;
+            top: auto;
+            left: auto;
+            animation: float2 30s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(40px,50px) scale(1.1); }
+            100% { transform: translate(0,0) scale(1); }
+        }
+
+        @keyframes float2 {
+            0% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(-50px,-40px) scale(1.05); }
+            100% { transform: translate(0,0) scale(1); }
+        }
+
+        /* Box */
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            max-width: 90%;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+        }
+
+        .box h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .box p {
+            font-size: 1rem;
+            margin: 15px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="blobs"></div>
+    <div class="blobs n2"></div>
+
+    <div class="box">
+        <h2>Stardust Calculator</h2>
+        <p>WIP</p>
+    </div>
+</body>
+</html>
