@@ -18,7 +18,6 @@
             font-family: arial, sans-serif;
         }
 
-        /* Background */
         body {
             background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
             position: relative;
@@ -30,7 +29,6 @@
             to { opacity: 1; }
         }
 
-        /* Stars */
         .stars {
             position: absolute;
             inset: 0;
@@ -54,7 +52,6 @@
             100% { opacity: 0.6; }
         }
 
-        /* Floating blobs */
         .blobs {
             position: absolute;
             width: 70vmax;
@@ -87,7 +84,6 @@
             100% { transform: translate(0,0) scale(1); }
         }
 
-        /* Box */
         .box {
             position: absolute;
             top: 50%;
@@ -108,9 +104,29 @@
             font-size: 1.8rem;
         }
 
-        .box p {
+        .boxnum {
+            margin-top: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            color: black;
             font-size: 1rem;
-            margin: 15px 0 0 0;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            text-align: center;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #0e0c0c;
         }
     </style>
 </head>
@@ -121,7 +137,22 @@
 
     <div class="box">
         <h2>Stardust Calculator</h2>
-        <p>WIP</p>
+        <div class="boxnum">
+            <input id="hoursInput" type="number" placeholder="Enter hours" oninput="calculate()">
+            <p id="result"></p>
+        </div>
     </div>
+
+    <script>
+        function calculate() {
+            const hours = parseFloat(document.getElementById('hoursInput').value);
+            const result = hours * 256;
+            if (!isNaN(result)) {
+                document.getElementById('result').textContent = `✨ Stardust: ${result.toLocaleString()}`;
+            } else {
+                document.getElementById('result').textContent = '';
+            }
+        }
+    </script>
 </body>
 </html>
