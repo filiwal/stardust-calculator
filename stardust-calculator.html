@@ -141,6 +141,10 @@
             <input id="hoursInput" type="number" placeholder="Enter hours" oninput="calculate()">
             <p id="result"></p>
         </div>
+        <div class="boxnum">
+            <input id="stardustinput" type="number" placeholder="Enter stardust amount" oninput="calculate2()">
+            <p id="result2"></p>
+        </div>
     </div>
 
     <script>
@@ -151,6 +155,15 @@
                 document.getElementById('result').textContent = `✨ Stardust: ${result.toLocaleString()}`;
             } else {
                 document.getElementById('result').textContent = '';
+            }
+        }
+        function calculate2() {
+            const stars = parseFloat(document.getElementById("stardustinput").value);
+            const result2 = stars / 256;
+            if (!isNaN(result2)) {
+                document.getElementById("result2").textContent = `🕝 housrs: ${result2.toLocaleString()}`;
+            } else {
+                document.getElementById('result2').textContent = '';
             }
         }
     </script>
