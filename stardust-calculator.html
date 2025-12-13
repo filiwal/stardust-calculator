@@ -104,6 +104,22 @@
             font-size: 1.8rem;
         }
 
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         .boxnum {
             margin-top: 20px;
             background: white;
@@ -137,34 +153,50 @@
 
     <div class="box">
         <h2>Stardust Calculator</h2>
+        <button id="swapButton" onclick="swapMode()">Swap to Stardust to Hours</button>
         <div class="boxnum">
-            <input id="hoursInput" type="number" placeholder="Enter hours" oninput="calculate()">
+            <input id="inputField" type="number" placeholder="Enter hours" oninput="calculate()">
             <p id="result"></p>
-        </div>
-        <div class="boxnum">
-            <input id="stardustinput" type="number" placeholder="Enter stardust amount" oninput="calculate2()">
-            <p id="result2"></p>
         </div>
     </div>
 
     <script>
+        let mode = 'hoursToStardust'; // 'hoursToStardust' or 'stardustToHours'
+
         function calculate() {
-            const hours = parseFloat(document.getElementById('hoursInput').value);
-            const result = hours * 256;
-            if (!isNaN(result)) {
-                document.getElementById('result').textContent = `✨ Stardust: ${result.toLocaleString()}`;
+            const value = parseFloat(document.getElementById('inputField').value);
+            let result;
+            if (mode === 'hoursToStardust') {
+                result = value * 256;
+                if (!isNaN(result)) {
+                    document.getElementById('result').textContent = `✨ Stardust: ${result.toLocaleString()}`;
+                } else {
+                    document.getElementById('result').textContent = '';
+                }
             } else {
-                document.getElementById('result').textContent = '';
+                result = value / 256;
+                if (!isNaN(result)) {
+                    document.getElementById('result').textContent = `🕝 Hours: ${result.toLocaleString()}`;
+                } else {
+                    document.getElementById('result').textContent = '';
+                }
             }
         }
-        function calculate2() {
-            const stars = parseFloat(document.getElementById("stardustinput").value);
-            const result2 = stars / 256;
-            if (!isNaN(result2)) {
-                document.getElementById("result2").textContent = `🕝 housrs: ${result2.toLocaleString()}`;
+
+        function swapMode() {
+            const inputField = document.getElementById('inputField');
+            const button = document.getElementById('swapButton');
+            if (mode === 'hoursToStardust') {
+                mode = 'stardustToHours';
+                inputField.placeholder = 'Enter stardust amount';
+                button.textContent = 'Swap to Hours to Stardust';
             } else {
-                document.getElementById('result2').textContent = '';
+                mode = 'hoursToStardust';
+                inputField.placeholder = 'Enter hours';
+                button.textContent = 'Swap to Stardust to Hours';
             }
+            // Recalculate if there's a value
+            calculate();
         }
     </script>
 </body>
